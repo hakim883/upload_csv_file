@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { Deletingfile ,exportcsv} from '../Redux/fileSlice';
+import { Deletingfile, exportcsv } from '../Redux/fileSlice';
 import { useDispatch } from 'react-redux'
 import Updaterow from './Updaterow';
-import Button from '@mui/material/Button';
+import Button from 'react-bootstrap/Button';
 
 import {
   Box,
@@ -71,6 +71,8 @@ const headCells = [
   { id: 'gender', numeric: false, disablePadding: true, label: 'Gender' },
   { id: 'email', numeric: false, disablePadding: true, label: 'Email' },
   { id: 'ip_address', numeric: false, disablePadding: true, label: 'IP Address' },
+  { id: '', numeric: false, disablePadding: true, label: '' },
+  { id: '', numeric: false, disablePadding: true, label: '' },
 
 
 
@@ -85,7 +87,7 @@ function EnhancedTableHead(props) {
   };
 
   return (
-    <TableHead>
+    <TableHead style={{ backgroundColor: '#E1F5FE', fontFamily: 'fantasy' }}>
       <TableRow>
         <TableCell padding="checkbox">
           <Checkbox
@@ -106,6 +108,7 @@ function EnhancedTableHead(props) {
             sortDirection={orderBy === headCell.id ? order : true}
           >
             <TableSortLabel
+
               active={orderBy === headCell.id}
               direction={orderBy === headCell.id ? order : 'asc'}
               onClick={createSortHandler(headCell.id)}
@@ -167,7 +170,7 @@ function EnhancedTable() {
 
   const emptyRows =
     page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : rowsPerPage - rows.length;
-    const dispatch = useDispatch()
+  const dispatch = useDispatch()
 
   return (
     <Box sx={{ width: '100%' }}>
@@ -189,9 +192,9 @@ function EnhancedTable() {
 
                 return (
                   <TableRow
-                 
-                  
-                  
+
+
+
                   >
                     <TableCell padding="checkbox">
                       <Checkbox
@@ -209,10 +212,10 @@ function EnhancedTable() {
                     <TableCell align="right">{row.gender}</TableCell>
                     <TableCell align="right">{row.email}</TableCell>
                     <TableCell align="right">{row.ip_address}</TableCell>
-<TableCell>           <IconButton onClick={() => dispatch(Deletingfile(row._id))} ><DeleteIcon  /></IconButton> 
-</TableCell>
-<TableCell>          <Updaterow File={row}   />
-</TableCell>
+                    <TableCell>   <IconButton onClick={() => dispatch(Deletingfile(row._id))} ><DeleteIcon /></IconButton>
+                    </TableCell>
+                    <TableCell>      <Updaterow File={row} />
+                    </TableCell>
                   </TableRow>
                 );
               })}
@@ -236,7 +239,7 @@ function EnhancedTable() {
       />
 
 
-<Button  onClick={() => dispatch(exportcsv())}variant="danger">export</Button>
+      <Button type="submit"    onClick={() => dispatch(exportcsv())} variant="primary">Export</Button>
 
 
     </Box>
