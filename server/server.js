@@ -9,12 +9,16 @@ require('dotenv').config();
 // Create Express app
 const app = express();
 
-
+const corsOptions = {
+  origin: "YOUR_FRONTEND_URL", // frontend URI (ReactJS)
+}
 
 // Configure middleware
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use(cors());
+app.use(cors(corsOptions));
+
+
 
 
 // Define routes
