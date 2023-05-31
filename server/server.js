@@ -9,14 +9,12 @@ require('dotenv').config();
 // Create Express app
 const app = express();
 
-const corsOptions = {
-  origin: "https://csvuppload.netlify.app/", // frontend URI (ReactJS)
-}
+
 
 // Configure middleware
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use(cors(corsOptions));
+app.use(cors());
 
 
 

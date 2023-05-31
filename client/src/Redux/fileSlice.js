@@ -8,7 +8,7 @@ export const uploadCsv =createAsyncThunk('file/uploadCsv' ,async (files,{rejectW
 
   try {
     
-    const {data} = await axios.post('/api/files/create',files)
+    const {data} = await axios.post('http://localhost:5000/api/files/create',files)
     
     return data
 
@@ -20,7 +20,7 @@ export const uploadCsv =createAsyncThunk('file/uploadCsv' ,async (files,{rejectW
 
 export const deleateallCsvData = createAsyncThunk('file/deleateallcsvData', async () => {
   try {
-    const {data} = await axios.delete('/api/files/');
+    const {data} = await axios.delete('http://localhost:5000/api/files/');
    return data
   } catch (error) {
     throw error.response.data;
@@ -30,7 +30,7 @@ export const deleateallCsvData = createAsyncThunk('file/deleateallcsvData', asyn
 
 export const readCsvData = createAsyncThunk('file/readCsvData', async () => {
   try {
-    const {data} = await axios.get('/api/files/read');
+    const {data} = await axios.get('http://localhost:5000/api/files/read');
    return data
   } catch (error) {
     throw error.response.data;
@@ -38,7 +38,7 @@ export const readCsvData = createAsyncThunk('file/readCsvData', async () => {
 });
 export const Updatingfile = createAsyncThunk('file/Updatingfile', async(updatedfile,{rejectWithValue,dispatch})=>{
   try {
-      const {data} = await axios.put(`/api/files/update/${updatedfile._id}`,updatedfile)
+      const {data} = await axios.put(`http://localhost:5000/api/files/update/${updatedfile._id}`,updatedfile)
       dispatch(readCsvData())
 
       return data
@@ -48,7 +48,7 @@ export const Updatingfile = createAsyncThunk('file/Updatingfile', async(updatedf
 })
 export const Deletingfile = createAsyncThunk('file/Deletingfile', async(id,{rejectWithValue,dispatch})=>{
   try {
-      const {data} = await axios.delete(`/api/files/${id}`)
+      const {data} = await axios.delete(`http://localhost:5000/api/files/${id}`)
       dispatch(readCsvData())
       return data
   } catch (error) {
@@ -59,7 +59,7 @@ export const exportcsv = createAsyncThunk('file/exportcsv', async(__,{rejectWith
 
 
   try {
-    const {data }= await axios.get('/api/files/export', { responseType: 'blob' });
+    const {data }= await axios.get('http://localhost:5000/api/files/export', { responseType: 'blob' });
     const url = window.URL.createObjectURL(data);
     const link = document.createElement('a');
     link.href = url;
