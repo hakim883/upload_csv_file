@@ -10,7 +10,7 @@ require('dotenv').config();
 const app = express();
 
 const corsOptions = {
-  origin: "YOUR_FRONTEND_URL", // frontend URI (ReactJS)
+  origin: "https://csvuppload.netlify.app/", // frontend URI (ReactJS)
 }
 
 // Configure middleware
